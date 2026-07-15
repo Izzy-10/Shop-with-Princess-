@@ -34,7 +34,7 @@
     card.className = 'piece';
     card.tabIndex = 0;
     card.innerHTML = `
-      <div class="piece-frame" style="--frame-bg:${p.bg}">
+      <div class="piece-frame">
         <span class="tag-no">${p.no}</span>
         ${pieceVisual(p)}
       </div>
@@ -51,9 +51,6 @@
   });
 
   function openModal(p){
-    document.getElementById('modal-image').style.setProperty('--frame-bg', p.bg);
-    document.getElementById('modal-image').style.background =
-      `linear-gradient(160deg, rgba(201,162,39,0.14), transparent 60%), ${p.bg}`;
     document.getElementById('modal-image').innerHTML = pieceVisual(p);
     document.getElementById('modal-cat').textContent = p.cat;
     document.getElementById('modal-title').textContent = p.name;
