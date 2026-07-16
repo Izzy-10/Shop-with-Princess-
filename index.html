@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop with Princess — Lookbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="top-row">
+    <div class="wordmark">SHOP WITH <span>PRINCESS</span></div>
+    <nav>
+      <a href="#gallery">Gallery</a>
+      <a href="#how">How to Order</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="track" aria-hidden="true">
+  <div class="lane-tags">
+    <span>HOODIES</span><span>TEES</span><span>JACKETS</span><span>CAPS</span><span>PRINCESS</span>
+    <span>HOODIES</span><span>TEES</span><span>JACKETS</span><span>CAPS</span><span>PRINCESS</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-eyebrow">SHOP WITH PRINCESS — LOOKBOOK 001</div>
+  <h1>SHOP THE<br><em>LOOK</em></h1>
+  <p>A gallery of the drop, not a checkout. Browse the pieces, find what you love, and message us directly to place your order.</p>
+  <div class="hero-actions">
+    <a class="hero-cta" href="#gallery">View the gallery ↓</a>
+    <a class="hero-cta hero-cta--ghost" href="https://chat.whatsapp.com/DYHJtZrafD260Ese2T47UX" target="_blank" rel="noopener">Join the WhatsApp group</a>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-mark">PRINCESS</div>
+  <p class="about-text">Siyathaba "Princess" Hlongwa is a dedicated clothing runner in Durban, trusted for logistics, collections, deliveries, and in-person coordination across apparel production and retail. Reliable, hands-on, and always ready.</p>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="section-head">
+    <h2>The Drop</h2>
+    <span id="count-label">6 pieces</span>
+  </div>
+  <div class="gallery" id="gallery-grid"></div>
+</section>
+
+<section class="how" id="how">
+  <h2>How to Order</h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="mark">STEP 01</div>
+      <h4>Browse the gallery</h4>
+      <p>Tap any piece to see it up close — sizing notes, colourway, and price.</p>
+    </div>
+    <div class="how-step">
+      <div class="mark">STEP 02</div>
+      <h4>Send an enquiry</h4>
+      <p>Hit "Enquire on WhatsApp" and we'll pick the conversation up straight away.</p>
+    </div>
+    <div class="how-step">
+      <div class="mark">STEP 03</div>
+      <h4>We confirm & deliver</h4>
+      <p>We'll confirm size, payment, and delivery with you directly — no cart, no middleman.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-head">
+    <h2>Get in Touch</h2>
+    <span>We reply fastest on WhatsApp</span>
+  </div>
+
+  <div class="contact-grid">
+    <form class="contact-form" id="contact-form">
+      <label for="c-name">Name</label>
+      <input type="text" id="c-name" name="name" required placeholder="Your name">
+
+      <label for="c-item">Item you're interested in</label>
+      <input type="text" id="c-item" name="item" placeholder="e.g. Track Line Hoodie">
+
+      <label for="c-message">Message</label>
+      <textarea id="c-message" name="message" rows="4" required placeholder="Tell us your size, colour, or any questions"></textarea>
+
+      <button type="submit" class="contact-submit">Send via WhatsApp</button>
+      <p class="contact-note">This opens WhatsApp with your details filled in — just hit send there.</p>
+    </form>
+
+    <div class="contact-side">
+      <a class="side-btn side-btn--filled" href="https://wa.me/qr/CCNIAW6DSTDZP1" target="_blank" rel="noopener">
+        Message Princess directly →
+      </a>
+      <a class="side-btn" href="https://chat.whatsapp.com/DYHJtZrafD260Ese2T47UX" target="_blank" rel="noopener">
+        Join the WhatsApp group →
+      </a>
+      <div class="side-info">
+        <div class="side-info-row"><span>Cell</span><a href="tel:+27729103254">072 910 3254</a></div>
+        <div class="side-info-row"><span>Instagram</span><a href="https://www.instagram.com/ncanehlongwa?igsh=ajN3c2Npem9sYXk0" target="_blank" rel="noopener">@ncanehlongwa</a></div>
+        <div class="side-info-row"><span>TikTok</span><a href="https://www.tiktok.com/@user62219652174198?_r=1&_t=ZS-9821sv1MjCv" target="_blank" rel="noopener">@user62219652174198</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <div class="modal-image" id="modal-image"></div>
+    <div class="modal-body">
+      <div class="cat" id="modal-cat"></div>
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+      <div class="price" id="modal-price"></div>
+      <a class="enquire" id="modal-enquire" href="#" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>Shop with Princess — Lookbook. Curated by <a href="https://izzy-10.github.io" target="_blank" rel="noopener">Sizwe Sicelimilo Sibiya</a>.</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/ncanehlongwa?igsh=ajN3c2Npem9sYXk0" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@user62219652174198?_r=1&_t=ZS-9821sv1MjCv" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://chat.whatsapp.com/DYHJtZrafD260Ese2T47UX" target="_blank" rel="noopener">Join WhatsApp Group</a>
+    <a href="https://wa.me/qr/CCNIAW6DSTDZP1" target="_blank" rel="noopener">Message us on WhatsApp →</a>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
