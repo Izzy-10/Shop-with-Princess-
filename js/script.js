@@ -1,61 +1,175 @@
-// Each piece uses a simple inline SVG placeholder so the layout works before real product photos are added.
+// Each item shows just a photo (or placeholder icon) and its category — no names, no prices.
+  // To add real photos: just set "img" to the path, e.g. img:'assets/dress-01.jpg'
   const icons = {
-    hoodie: `<svg viewBox="0 0 100 100" fill="none" stroke="#C98A7D" stroke-width="2.5"><path d="M30 20 L20 35 L28 40 L30 30 L30 85 L70 85 L70 30 L72 40 L80 35 L70 20 Q50 10 30 20Z" stroke-linejoin="round"/><path d="M40 22 Q50 32 60 22" /></svg>`,
-    tee: `<svg viewBox="0 0 100 100" fill="none" stroke="#C98A7D" stroke-width="2.5"><path d="M35 18 L15 28 L25 45 L35 38 L35 85 L65 85 L65 38 L75 45 L85 28 L65 18 Q50 28 35 18Z" stroke-linejoin="round"/></svg>`,
-    jacket: `<svg viewBox="0 0 100 100" fill="none" stroke="#C98A7D" stroke-width="2.5"><path d="M32 18 L18 30 L26 42 L32 34 L32 85 L50 78 L68 85 L68 34 L74 42 L82 30 L68 18 L58 24 L50 20 L42 24 Z" stroke-linejoin="round"/><line x1="50" y1="20" x2="50" y2="85"/></svg>`,
-    cap: `<svg viewBox="0 0 100 100" fill="none" stroke="#C98A7D" stroke-width="2.5"><path d="M20 55 Q20 30 50 30 Q80 30 80 55 Z" stroke-linejoin="round"/><path d="M20 55 L5 60 L20 62Z" stroke-linejoin="round"/><line x1="50" y1="30" x2="50" y2="55"/></svg>`
+    dress:   `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M40 15 L30 28 L36 34 L40 28 L34 50 L20 85 L80 85 L66 50 L60 28 L64 34 L70 28 L60 15 Q50 24 40 15Z" stroke-linejoin="round"/></svg>`,
+    top:     `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M35 18 L15 28 L25 45 L35 38 L35 75 L65 75 L65 38 L75 45 L85 28 L65 18 Q50 28 35 18Z" stroke-linejoin="round"/></svg>`,
+    shirt:   `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M35 18 L15 28 L25 45 L35 38 L35 85 L65 85 L65 38 L75 45 L85 28 L65 18 Q50 28 35 18Z" stroke-linejoin="round"/><line x1="50" y1="20" x2="50" y2="85"/></svg>`,
+    tee:     `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M35 18 L15 28 L25 45 L35 38 L35 85 L65 85 L65 38 L75 45 L85 28 L65 18 Q50 28 35 18Z" stroke-linejoin="round"/></svg>`,
+    hoodie:  `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M30 20 L20 35 L28 40 L30 30 L30 85 L70 85 L70 30 L72 40 L80 35 L70 20 Q50 10 30 20Z" stroke-linejoin="round"/><path d="M40 22 Q50 32 60 22" /></svg>`,
+    jacket:  `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M32 18 L18 30 L26 42 L32 34 L32 85 L50 78 L68 85 L68 34 L74 42 L82 30 L68 18 L58 24 L50 20 L42 24 Z" stroke-linejoin="round"/><line x1="50" y1="20" x2="50" y2="85"/></svg>`,
+    pants:   `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M30 15 L30 85 L45 85 L48 40 L52 40 L55 85 L70 85 L70 15 Z" stroke-linejoin="round"/></svg>`,
+    shorts:  `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M30 15 L30 55 L45 55 L47 40 L53 40 L55 55 L70 55 L70 15 Z" stroke-linejoin="round"/></svg>`,
+    skirt:   `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M35 20 L65 20 L78 80 L22 80 Z" stroke-linejoin="round"/><line x1="35" y1="20" x2="65" y2="20"/></svg>`,
+    shoes:   `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M15 70 Q15 55 30 55 L35 45 L55 45 L65 60 L88 62 Q90 70 82 72 L18 75 Q12 74 15 70Z" stroke-linejoin="round"/></svg>`,
+    bag:     `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M25 40 L75 40 L70 85 L30 85 Z" stroke-linejoin="round"/><path d="M38 40 Q38 22 50 22 Q62 22 62 40" /></svg>`,
+    tracksuit: `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M30 20 L18 32 L26 44 L30 36 L30 58 L70 58 L70 36 L74 44 L82 32 L70 20 Q50 12 30 20Z" stroke-linejoin="round"/><path d="M32 58 L32 88 L46 88 L48 62" stroke-linejoin="round"/><path d="M68 58 L68 88 L54 88 L52 62" stroke-linejoin="round"/></svg>`,
+    set:     `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M35 15 L20 24 L28 38 L35 32 L35 52 L65 52 L65 32 L72 38 L80 24 L65 15 Q50 24 35 15Z" stroke-linejoin="round"/><path d="M32 60 L30 85 L48 85 L50 68 L52 68 L54 85 L72 85 L70 60 Z" stroke-linejoin="round"/></svg>`
   };
 
-  const pieces = [
-    {no:'01', cat:'Hoodie', name:'Track Line Hoodie', desc:'Heavyweight fleece with a gold lane-stripe down the sleeve. Oversized fit.', price:'R650', icon:'hoodie', bg:'#F6E9E4'},
-    {no:'02', cat:'Tee', name:'Jozini Skyline Tee', desc:'Boxy cut, ribbed collar, chest print inspired by the KZN skyline.', price:'R280', icon:'tee', bg:'#F3E1DB'},
-    {no:'03', cat:'Jacket', name:'Asphalt Windbreaker', desc:'Lightweight shell, water-resistant, gold zip pull, packs into its own pocket.', price:'R780', icon:'jacket', bg:'#F6E9E4'},
-    {no:'04', cat:'Cap', name:'Lane Marker Cap', desc:'Structured 6-panel cap with embroidered lane-stripe on the brim.', price:'R220', icon:'cap', bg:'#F3E1DB'},
-    {no:'05', cat:'Hoodie', name:'Durban Dusk Hoodie', desc:'Washed black fleece, minimal branding, built for early starts.', price:'R680', icon:'hoodie', bg:'#F9EFEA'},
-    {no:'06', cat:'Tee', name:'Princess Classic Tee', desc:'The staple. Heavyweight cotton, screen-printed wordmark, true to size.', price:'R260', icon:'tee', bg:'#F6E9E4'}
-    // To add a new piece with a real photo, copy a line above and add an "img" field, e.g.:
-    // {no:'07', cat:'Tee', name:'New Tee', desc:'...', price:'R300', img:'assets/new-tee.jpg', bg:'#F6E9E4'}
+  // Group items by category. Add as many items per category as you like —
+  // just copy a line and change "img" (or leave it out to show the placeholder icon for that category).
+  const categories = [
+    {
+      name: 'Dresses',
+      icon: 'dress',
+      items: [
+        { img: null },
+        { img: null }
+      ]
+    },
+    {
+      name: 'Tops & Blouses',
+      icon: 'top',
+      items: [
+        { img: null },
+        { img: null }
+      ]
+    },
+    {
+      name: 'Shirts',
+      icon: 'shirt',
+      items: [
+        { img: null },
+        { img: null }
+      ]
+    },
+    {
+      name: 'T-Shirts',
+      icon: 'tee',
+      items: [
+        { img: null },
+        { img: null }
+      ]
+    },
+    {
+      name: 'Hoodies & Sweaters',
+      icon: 'hoodie',
+      items: [
+        { img: null },
+        { img: null }
+      ]
+    },
+    {
+      name: 'Jackets & Outerwear',
+      icon: 'jacket',
+      items: [
+        { img: null }
+      ]
+    },
+    {
+      name: 'Tracksuit',
+      icon: 'tracksuit',
+      items: [
+        { img: null }
+      ]
+    },
+    {
+      name: 'Pants & Trousers',
+      icon: 'pants',
+      items: [
+        { img: null }
+      ]
+    },
+    {
+      name: 'Shorts',
+      icon: 'shorts',
+      items: [
+        { img: null }
+      ]
+    },
+    {
+      name: 'Skirts',
+      icon: 'skirt',
+      items: [
+        { img: null }
+      ]
+    },
+    {
+      name: 'Two-Piece Sets',
+      icon: 'set',
+      items: [
+        { img: null }
+      ]
+    },
+    {
+      name: 'Shoes',
+      icon: 'shoes',
+      items: [
+        { img: null }
+      ]
+    },
+    {
+      name: 'Bags & Accessories',
+      icon: 'bag',
+      items: [
+        { img: null }
+      ]
+    }
   ];
 
-  // Renders a real photo if p.img is set, otherwise falls back to the placeholder SVG icon
-  function pieceVisual(p){
-    if(p.img){
-      return `<img src="${p.img}" alt="${p.name}" loading="lazy">`;
+  // Renders a real photo if item.img is set, otherwise falls back to the category's placeholder icon
+  function itemVisual(item, categoryIcon){
+    if(item.img){
+      return `<img src="${item.img}" alt="" loading="lazy">`;
     }
-    return icons[p.icon];
+    return icons[categoryIcon] || '';
   }
 
   const grid = document.getElementById('gallery-grid');
   const overlay = document.getElementById('modal-overlay');
   const waBase = 'https://wa.me/qr/CCNIAW6DSTDZP1';
 
-  pieces.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'piece';
-    card.tabIndex = 0;
-    card.innerHTML = `
-      <div class="piece-frame">
-        <span class="tag-no">${p.no}</span>
-        ${pieceVisual(p)}
-      </div>
-      <div class="piece-info">
-        <div class="cat">${p.cat}</div>
-        <h3>${p.name}</h3>
-        <p>${p.price}</p>
-      </div>
-    `;
-    const open = () => openModal(p);
-    card.addEventListener('click', open);
-    card.addEventListener('keydown', e => { if(e.key === 'Enter') open(); });
-    grid.appendChild(card);
+  let totalCount = 0;
+
+  categories.forEach(category => {
+    if(!category.items.length) return;
+
+    const heading = document.createElement('div');
+    heading.className = 'category-heading';
+    heading.textContent = category.name;
+    grid.appendChild(heading);
+
+    const row = document.createElement('div');
+    row.className = 'category-row';
+
+    category.items.forEach(item => {
+      totalCount++;
+      const card = document.createElement('div');
+      card.className = 'piece';
+      card.tabIndex = 0;
+      card.innerHTML = `
+        <div class="piece-frame">
+          ${itemVisual(item, category.icon)}
+        </div>
+        <div class="piece-info">
+          <div class="cat">${category.name}</div>
+        </div>
+      `;
+      const open = () => openModal(item, category);
+      card.addEventListener('click', open);
+      card.addEventListener('keydown', e => { if(e.key === 'Enter') open(); });
+      row.appendChild(card);
+    });
+
+    grid.appendChild(row);
   });
 
-  function openModal(p){
-    document.getElementById('modal-image').innerHTML = pieceVisual(p);
-    document.getElementById('modal-cat').textContent = p.cat;
-    document.getElementById('modal-title').textContent = p.name;
-    document.getElementById('modal-desc').textContent = p.desc;
-    document.getElementById('modal-price').textContent = p.price;
+  const countLabel = document.getElementById('count-label');
+  if(countLabel) countLabel.textContent = `${totalCount} pieces`;
+
+  function openModal(item, category){
+    document.getElementById('modal-image').innerHTML = itemVisual(item, category.icon);
+    document.getElementById('modal-cat').textContent = category.name;
     document.getElementById('modal-enquire').href = waBase;
     overlay.classList.add('open');
   }
