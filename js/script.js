@@ -16,105 +16,219 @@
     set:     `<svg viewBox="0 0 100 100" fill="none" stroke="#B3695E" stroke-width="2.5"><path d="M35 15 L20 24 L28 38 L35 32 L35 52 L65 52 L65 32 L72 38 L80 24 L65 15 Q50 24 35 15Z" stroke-linejoin="round"/><path d="M32 60 L30 85 L48 85 L50 68 L52 68 L54 85 L72 85 L70 60 Z" stroke-linejoin="round"/></svg>`
   };
 
-  // Group items by category. Add as many items per category as you like —
-  // just copy a line and change "img" (or leave it out to show the placeholder icon for that category).
+  // Group items by category. Each category has 10 ready slots.
+  // To add a real photo: upload it to /assets with the exact filename shown in the
+  // comment next to each slot, then change that line's img from null to the path, e.g.:
+  //   { img: null } // assets/dresses-01.jpg   →   { img: 'assets/dresses-01.jpg' }
   const categories = [
     {
       name: 'Dresses',
       icon: 'dress',
       items: [
-        { img: null },
-        { img: null }
+        { img: 'assets/dresses.jpg' },
+        { img: 'assets/dresses-02.jpg' },
+        { img: 'assets/dresses-03.jpg' },
+        { img: 'assets/dresses-04.jpg' },
+        { img: 'assets/dresses-05.jpg' },
+        { img: null }, // assets/dresses-06.jpg
+        { img: null }, // assets/dresses-07.jpg
+        { img: null }, // assets/dresses-08.jpg
+        { img: null }, // assets/dresses-09.jpg
+        { img: null } // assets/dresses-10.jpg
       ]
     },
     {
       name: 'Tops & Blouses',
       icon: 'top',
       items: [
-        { img: null },
-        { img: null }
+        { img: null }, // assets/tops-blouses-01.jpg
+        { img: null }, // assets/tops-blouses-02.jpg
+        { img: null }, // assets/tops-blouses-03.jpg
+        { img: null }, // assets/tops-blouses-04.jpg
+        { img: null }, // assets/tops-blouses-05.jpg
+        { img: null }, // assets/tops-blouses-06.jpg
+        { img: null }, // assets/tops-blouses-07.jpg
+        { img: null }, // assets/tops-blouses-08.jpg
+        { img: null }, // assets/tops-blouses-09.jpg
+        { img: null } // assets/tops-blouses-10.jpg
       ]
     },
     {
       name: 'Shirts',
       icon: 'shirt',
       items: [
-        { img: null },
-        { img: null }
+        { img: null }, // assets/shirts-01.jpg
+        { img: null }, // assets/shirts-02.jpg
+        { img: null }, // assets/shirts-03.jpg
+        { img: null }, // assets/shirts-04.jpg
+        { img: null }, // assets/shirts-05.jpg
+        { img: null }, // assets/shirts-06.jpg
+        { img: null }, // assets/shirts-07.jpg
+        { img: null }, // assets/shirts-08.jpg
+        { img: null }, // assets/shirts-09.jpg
+        { img: null } // assets/shirts-10.jpg
       ]
     },
     {
       name: 'T-Shirts',
       icon: 'tee',
       items: [
-        { img: null },
-        { img: null }
+        { img: null }, // assets/tshirts-01.jpg
+        { img: null }, // assets/tshirts-02.jpg
+        { img: null }, // assets/tshirts-03.jpg
+        { img: null }, // assets/tshirts-04.jpg
+        { img: null }, // assets/tshirts-05.jpg
+        { img: null }, // assets/tshirts-06.jpg
+        { img: null }, // assets/tshirts-07.jpg
+        { img: null }, // assets/tshirts-08.jpg
+        { img: null }, // assets/tshirts-09.jpg
+        { img: null } // assets/tshirts-10.jpg
       ]
     },
     {
       name: 'Hoodies & Sweaters',
       icon: 'hoodie',
       items: [
-        { img: null },
-        { img: null }
+        { img: null }, // assets/hoodies-sweaters-01.jpg
+        { img: null }, // assets/hoodies-sweaters-02.jpg
+        { img: null }, // assets/hoodies-sweaters-03.jpg
+        { img: null }, // assets/hoodies-sweaters-04.jpg
+        { img: null }, // assets/hoodies-sweaters-05.jpg
+        { img: null }, // assets/hoodies-sweaters-06.jpg
+        { img: null }, // assets/hoodies-sweaters-07.jpg
+        { img: null }, // assets/hoodies-sweaters-08.jpg
+        { img: null }, // assets/hoodies-sweaters-09.jpg
+        { img: null } // assets/hoodies-sweaters-10.jpg
       ]
     },
     {
       name: 'Jackets & Outerwear',
       icon: 'jacket',
       items: [
-        { img: null }
+        { img: 'assets/jackets-outerwear-01.jpg' },
+        { img: null }, // assets/jackets-outerwear-02.jpg
+        { img: null }, // assets/jackets-outerwear-03.jpg
+        { img: null }, // assets/jackets-outerwear-04.jpg
+        { img: null }, // assets/jackets-outerwear-05.jpg
+        { img: null }, // assets/jackets-outerwear-06.jpg
+        { img: null }, // assets/jackets-outerwear-07.jpg
+        { img: null }, // assets/jackets-outerwear-08.jpg
+        { img: null }, // assets/jackets-outerwear-09.jpg
+        { img: null } // assets/jackets-outerwear-10.jpg
       ]
     },
     {
       name: 'Tracksuit',
       icon: 'tracksuit',
       items: [
-        { img: null }
+        { img: 'assets/tracksuit-01.jpg' },
+        { img: 'assets/tracksuit-02.jpg' },
+        { img: 'assets/tracksuit-03.jpg' },
+        { img: 'assets/tracksuit-04.jpg' },
+        { img: null }, // assets/tracksuit-05.jpg
+        { img: null }, // assets/tracksuit-06.jpg
+        { img: null }, // assets/tracksuit-07.jpg
+        { img: null }, // assets/tracksuit-08.jpg
+        { img: null }, // assets/tracksuit-09.jpg
+        { img: null } // assets/tracksuit-10.jpg
       ]
     },
     {
       name: 'Pants & Trousers',
       icon: 'pants',
       items: [
-        { img: null }
+        { img: null }, // assets/pants-trousers-01.jpg
+        { img: null }, // assets/pants-trousers-02.jpg
+        { img: null }, // assets/pants-trousers-03.jpg
+        { img: null }, // assets/pants-trousers-04.jpg
+        { img: null }, // assets/pants-trousers-05.jpg
+        { img: null }, // assets/pants-trousers-06.jpg
+        { img: null }, // assets/pants-trousers-07.jpg
+        { img: null }, // assets/pants-trousers-08.jpg
+        { img: null }, // assets/pants-trousers-09.jpg
+        { img: null } // assets/pants-trousers-10.jpg
       ]
     },
     {
       name: 'Shorts',
       icon: 'shorts',
       items: [
-        { img: null }
+        { img: null }, // assets/shorts-01.jpg
+        { img: null }, // assets/shorts-02.jpg
+        { img: null }, // assets/shorts-03.jpg
+        { img: null }, // assets/shorts-04.jpg
+        { img: null }, // assets/shorts-05.jpg
+        { img: null }, // assets/shorts-06.jpg
+        { img: null }, // assets/shorts-07.jpg
+        { img: null }, // assets/shorts-08.jpg
+        { img: null }, // assets/shorts-09.jpg
+        { img: null } // assets/shorts-10.jpg
       ]
     },
     {
       name: 'Skirts',
       icon: 'skirt',
       items: [
-        { img: null }
+        { img: null }, // assets/skirts-01.jpg
+        { img: null }, // assets/skirts-02.jpg
+        { img: null }, // assets/skirts-03.jpg
+        { img: null }, // assets/skirts-04.jpg
+        { img: null }, // assets/skirts-05.jpg
+        { img: null }, // assets/skirts-06.jpg
+        { img: null }, // assets/skirts-07.jpg
+        { img: null }, // assets/skirts-08.jpg
+        { img: null }, // assets/skirts-09.jpg
+        { img: null } // assets/skirts-10.jpg
       ]
     },
     {
       name: 'Two-Piece Sets',
       icon: 'set',
       items: [
-        { img: null }
+        { img: null }, // assets/two-piece-sets-01.jpg
+        { img: null }, // assets/two-piece-sets-02.jpg
+        { img: null }, // assets/two-piece-sets-03.jpg
+        { img: null }, // assets/two-piece-sets-04.jpg
+        { img: null }, // assets/two-piece-sets-05.jpg
+        { img: null }, // assets/two-piece-sets-06.jpg
+        { img: null }, // assets/two-piece-sets-07.jpg
+        { img: null }, // assets/two-piece-sets-08.jpg
+        { img: null }, // assets/two-piece-sets-09.jpg
+        { img: null } // assets/two-piece-sets-10.jpg
       ]
     },
     {
       name: 'Shoes',
       icon: 'shoes',
       items: [
-        { img: null }
+        { img: null }, // assets/shoes-01.jpg
+        { img: null }, // assets/shoes-02.jpg
+        { img: null }, // assets/shoes-03.jpg
+        { img: null }, // assets/shoes-04.jpg
+        { img: null }, // assets/shoes-05.jpg
+        { img: null }, // assets/shoes-06.jpg
+        { img: null }, // assets/shoes-07.jpg
+        { img: null }, // assets/shoes-08.jpg
+        { img: null }, // assets/shoes-09.jpg
+        { img: null } // assets/shoes-10.jpg
       ]
     },
     {
       name: 'Bags & Accessories',
       icon: 'bag',
       items: [
-        { img: null }
+        { img: null }, // assets/bags-accessories-01.jpg
+        { img: null }, // assets/bags-accessories-02.jpg
+        { img: null }, // assets/bags-accessories-03.jpg
+        { img: null }, // assets/bags-accessories-04.jpg
+        { img: null }, // assets/bags-accessories-05.jpg
+        { img: null }, // assets/bags-accessories-06.jpg
+        { img: null }, // assets/bags-accessories-07.jpg
+        { img: null }, // assets/bags-accessories-08.jpg
+        { img: null }, // assets/bags-accessories-09.jpg
+        { img: null } // assets/bags-accessories-10.jpg
       ]
-    }
+    },
   ];
 
   // Renders a real photo if item.img is set, otherwise falls back to the category's placeholder icon
@@ -193,3 +307,4 @@
     const url = `https://wa.me/${PRINCESS_PHONE}?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank', 'noopener');
   });
+
