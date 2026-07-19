@@ -239,6 +239,10 @@
     return icons[categoryIcon] || '';
   }
 
+  function slugify(str){
+    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+
   const grid = document.getElementById('gallery-grid');
   const overlay = document.getElementById('modal-overlay');
   const waBase = 'https://wa.me/qr/CCNIAW6DSTDZP1';
@@ -251,6 +255,7 @@
 
       const heading = document.createElement('div');
       heading.className = 'category-heading';
+      heading.id = 'cat-' + slugify(category.name);
       heading.textContent = category.name;
       grid.appendChild(heading);
 
@@ -314,5 +319,39 @@
 
       const url = `https://wa.me/${PRINCESS_PHONE}?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank', 'noopener');
+    });
+  }
+
+  // Home page teaser — pulls a handful of pieces to preview, linking each to its category in the full gallery
+  const featuredGrid = document.getElementById('featured-grid');
+  if(featuredGrid){
+    const FEATURED_COUNT = 6;
+    const withPhotos = [];
+    const withoutPhotos = [];
+
+    categories.forEach(category => {
+      const firstPhoto = category.items.find(i => i.img);
+      if(firstPhoto){
+        withPhotos.push({ item: firstPhoto, category });
+      } else if(category.items.length){
+        withoutPhotos.push({ item: category.items[0], category });
+      }
+    });
+
+    const featured = withPhotos.concat(withoutPhotos).slice(0, FEATURED_COUNT);
+
+    featured.forEach(({ item, category }) => {
+      const card = document.createElement('a');
+      card.className = 'piece';
+      card.href = `gallery.html#cat-${slugify(category.name)}`;
+      card.innerHTML = `
+        <div class="piece-frame">
+          ${itemVisual(item, category.icon)}
+        </div>
+        <div class="piece-info">
+          <div class="cat">${category.name}</div>
+        </div>
+      `;
+      featuredGrid.appendChild(card);
     });
   }
