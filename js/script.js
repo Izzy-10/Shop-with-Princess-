@@ -355,4 +355,3 @@
       featuredGrid.appendChild(card);
     });
   }
-
