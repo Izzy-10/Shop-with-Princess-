@@ -239,28 +239,111 @@
     return icons[categoryIcon] || '';
   }
 
+  function slugify(str){
+    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+
   const grid = document.getElementById('gallery-grid');
   const overlay = document.getElementById('modal-overlay');
   const waBase = 'https://wa.me/qr/CCNIAW6DSTDZP1';
 
   let totalCount = 0;
 
-  categories.forEach(category => {
-    if(!category.items.length) return;
+  if(grid){
+    categories.forEach(category => {
+      if(!category.items.length) return;
 
-    const heading = document.createElement('div');
-    heading.className = 'category-heading';
-    heading.textContent = category.name;
-    grid.appendChild(heading);
+      const heading = document.createElement('div');
+      heading.className = 'category-heading';
+      heading.id = 'cat-' + slugify(category.name);
+      heading.textContent = category.name;
+      grid.appendChild(heading);
 
-    const row = document.createElement('div');
-    row.className = 'category-row';
+      const row = document.createElement('div');
+      row.className = 'category-row';
 
-    category.items.forEach(item => {
-      totalCount++;
-      const card = document.createElement('div');
+      category.items.forEach(item => {
+        totalCount++;
+        const card = document.createElement('div');
+        card.className = 'piece';
+        card.tabIndex = 0;
+        card.innerHTML = `
+          <div class="piece-frame">
+            ${itemVisual(item, category.icon)}
+          </div>
+          <div class="piece-info">
+            <div class="cat">${category.name}</div>
+          </div>
+        `;
+        const open = () => openModal(item, category);
+        card.addEventListener('click', open);
+        card.addEventListener('keydown', e => { if(e.key === 'Enter') open(); });
+        row.appendChild(card);
+      });
+
+      grid.appendChild(row);
+    });
+  }
+
+  const countLabel = document.getElementById('count-label');
+  if(countLabel) countLabel.textContent = `${totalCount} pieces`;
+
+  function openModal(item, category){
+    if(!overlay) return;
+    document.getElementById('modal-image').innerHTML = itemVisual(item, category.icon);
+    document.getElementById('modal-cat').textContent = category.name;
+    document.getElementById('modal-enquire').href = waBase;
+    overlay.classList.add('open');
+  }
+
+  if(overlay){
+    const modalClose = document.getElementById('modal-close');
+    if(modalClose) modalClose.addEventListener('click', () => overlay.classList.remove('open'));
+    overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') overlay.classList.remove('open'); });
+  }
+
+  // Contact form → hands off to WhatsApp with the details pre-filled
+  const PRINCESS_PHONE = '27729103254'; // Princess's number, international format, no + or spaces
+  const contactForm = document.getElementById('contact-form');
+  if(contactForm){
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('c-name').value.trim();
+      const item = document.getElementById('c-item').value.trim();
+      const message = document.getElementById('c-message').value.trim();
+
+      let text = `Hi Princess, it's ${name}.`;
+      if(item) text += ` I'm interested in: ${item}.`;
+      text += ` ${message}`;
+
+      const url = `https://wa.me/${PRINCESS_PHONE}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+
+  // Home page teaser — pulls a handful of pieces to preview, linking each to its category in the full gallery
+  const featuredGrid = document.getElementById('featured-grid');
+  if(featuredGrid){
+    const FEATURED_COUNT = 6;
+    const withPhotos = [];
+    const withoutPhotos = [];
+
+    categories.forEach(category => {
+      const firstPhoto = category.items.find(i => i.img);
+      if(firstPhoto){
+        withPhotos.push({ item: firstPhoto, category });
+      } else if(category.items.length){
+        withoutPhotos.push({ item: category.items[0], category });
+      }
+    });
+
+    const featured = withPhotos.concat(withoutPhotos).slice(0, FEATURED_COUNT);
+
+    featured.forEach(({ item, category }) => {
+      const card = document.createElement('a');
       card.className = 'piece';
-      card.tabIndex = 0;
+      card.href = `gallery.html#cat-${slugify(category.name)}`;
       card.innerHTML = `
         <div class="piece-frame">
           ${itemVisual(item, category.icon)}
@@ -269,42 +352,7 @@
           <div class="cat">${category.name}</div>
         </div>
       `;
-      const open = () => openModal(item, category);
-      card.addEventListener('click', open);
-      card.addEventListener('keydown', e => { if(e.key === 'Enter') open(); });
-      row.appendChild(card);
+      featuredGrid.appendChild(card);
     });
-
-    grid.appendChild(row);
-  });
-
-  const countLabel = document.getElementById('count-label');
-  if(countLabel) countLabel.textContent = `${totalCount} pieces`;
-
-  function openModal(item, category){
-    document.getElementById('modal-image').innerHTML = itemVisual(item, category.icon);
-    document.getElementById('modal-cat').textContent = category.name;
-    document.getElementById('modal-enquire').href = waBase;
-    overlay.classList.add('open');
   }
-  document.getElementById('modal-close').addEventListener('click', () => overlay.classList.remove('open'));
-  overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('open'); });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') overlay.classList.remove('open'); });
-
-  // Contact form → hands off to WhatsApp with the details pre-filled
-  const PRINCESS_PHONE = '27729103254'; // Princess's number, international format, no + or spaces
-  const contactForm = document.getElementById('contact-form');
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('c-name').value.trim();
-    const item = document.getElementById('c-item').value.trim();
-    const message = document.getElementById('c-message').value.trim();
-
-    let text = `Hi Princess, it's ${name}.`;
-    if(item) text += ` I'm interested in: ${item}.`;
-    text += ` ${message}`;
-
-    const url = `https://wa.me/${PRINCESS_PHONE}?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank', 'noopener');
-  });
 
