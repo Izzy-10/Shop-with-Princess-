@@ -30,11 +30,11 @@
         { img: 'assets/dresses-03.jpg' },
         { img: 'assets/dresses-04.jpg' },
         { img: 'assets/dresses-05.jpg' },
-        { img: null }, // assets/dresses-06.jpg
-        { img: null }, // assets/dresses-07.jpg
-        { img: null }, // assets/dresses-08.jpg
-        { img: null }, // assets/dresses-09.jpg
-        { img: null } // assets/dresses-10.jpg
+        { img: 'assets/dresses-06.jpg' },
+        { img: 'assets/dresses-07.jpg' },
+        { img: 'assets/dresses-08.jpg' },
+        { img: 'assets/dresses-09.jpg' },
+        { img: 'assets/dresses-10.jpg' },
       ]
     },
     {
