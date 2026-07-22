@@ -153,13 +153,13 @@
       name: 'Shorts',
       icon: 'shorts',
       items: [
-        { img: 'assets/shorts-01.jpg'
-        { img: 'assets/shorts-02 .jpg'
-        { img: 'assets/shorts-03.jpg'
-        { img: 'assets/shorts-04.jpg'
-        { img: 'assets/shorts-05.jpg'
-        { img: 'assets/shorts-06.jpg'
-        { img: 'assets/shorts-07.jpg'
+        { img: null }, //assets/shorts-01.jpg'
+        { img: null }, //assets/shorts-02 .jpg'
+        { img: null }, //assets/shorts-03.jpg'
+        { img: null }, //assets/shorts-04.jpg'
+        { img: null }, //assets/shorts-05.jpg'
+        { img: null }, //assets/shorts-06.jpg'
+        { img: null }, //assets/shorts-07.jpg'
         { img: null }, // assets/shorts-08.jpg
         { img: null }, // assets/shorts-09.jpg
         { img: null } // assets/shorts-10.jpg
