@@ -25,11 +25,11 @@
       name: 'Dresses',
       icon: 'dress',
       items: [
-        { img: 'assets/dresses.jpg' },
-        { img: 'assets/dresses-02.jpg' },
-        { img: 'assets/dresses-03.jpg' },
-        { img: 'assets/dresses-04.jpg' },
-        { img: 'assets/dresses-05.jpg' },
+        { img: null }, // assets/dresses.jpg
+        { img: null }, // assets/dresses-02.jpg
+        { img: null }, // assets/dresses-03.jpg
+        { img: null }, // assets/dresses-04.jpg
+        { img: null }, // assets/dresses-05.jpg
         { img: null }, // assets/dresses-06.jpg
         { img: null }, // assets/dresses-07.jpg
         { img: null }, // assets/dresses-08.jpg
@@ -105,7 +105,7 @@
       name: 'Jackets & Outerwear',
       icon: 'jacket',
       items: [
-        { img: 'assets/jackets-outerwear-01.jpg' },
+        { img: null }, // assets/jackets-outerwear-01.jpg
         { img: null }, // assets/jackets-outerwear-02.jpg
         { img: null }, // assets/jackets-outerwear-03.jpg
         { img: null }, // assets/jackets-outerwear-04.jpg
@@ -121,10 +121,10 @@
       name: 'Tracksuit',
       icon: 'tracksuit',
       items: [
-        { img: 'assets/tracksuit-01.jpg' },
-        { img: 'assets/tracksuit-02.jpg' },
-        { img: 'assets/tracksuit-03.jpg' },
-        { img: 'assets/tracksuit-04.jpg' },
+        { img: null }, // assets/tracksuit-01.jpg
+        { img: null }, // assets/tracksuit-02.jpg
+        { img: null }, // assets/tracksuit-03.jpg
+        { img: null }, // assets/tracksuit-04.jpg
         { img: null }, // assets/tracksuit-05.jpg
         { img: null }, // assets/tracksuit-06.jpg
         { img: null }, // assets/tracksuit-07.jpg
@@ -201,16 +201,16 @@
       name: 'Shoes',
       icon: 'shoes',
       items: [
-        { img: 'assets/shoes-01.jpg' },
-        { img: 'assets/shoes-02.jpg' },
-        { img: 'assets/shoes-03.jpg' },
-        { img: 'assets/shoes-04.jpg' },
-        { img: 'assets/shoes-05.jpg' },
-        { img: 'assets/shoes-06.jpg' },
-        { img: 'assets/shoes-07.jpg' },
-        { img: 'assets/shoes-08.jpg' },
-        { img: 'assets/shoes-09.jpg' },
-        { img: 'assets/shoes-10.jpg' }
+        { img: null }, // assets/shoes-01.jpg
+        { img: null }, // assets/shoes-02.jpg
+        { img: null }, // assets/shoes-03.jpg
+        { img: null }, // assets/shoes-04.jpg
+        { img: null }, // assets/shoes-05.jpg
+        { img: null }, // assets/shoes-06.jpg
+        { img: null }, // assets/shoes-07.jpg
+        { img: null }, // assets/shoes-08.jpg
+        { img: null }, // assets/shoes-09.jpg
+        { img: null } // assets/shoes-10.jpg
       ]
     },
     {
