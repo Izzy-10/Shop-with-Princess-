@@ -25,7 +25,7 @@
       name: 'Dresses',
       icon: 'dress',
       items: [
-        { img: 'assets/dresses-01.jpg' },
+        { img: 'assets/dresses.jpg' },
         { img: 'assets/dresses-02.jpg' },
         { img: 'assets/dresses-03.jpg' },
         { img: 'assets/dresses-04.jpg' },
