@@ -25,7 +25,7 @@
       name: 'Dresses',
       icon: 'dress',
       items: [
-        { img: 'assets/dresses.jpg' },
+        { img: 'assets/dresses-01.jpg' },
         { img: 'assets/dresses-02.jpg' },
         { img: 'assets/dresses-03.jpg' },
         { img: 'assets/dresses-04.jpg' },
@@ -153,13 +153,13 @@
       name: 'Shorts',
       icon: 'shorts',
       items: [
-        { img: null }, // assets/shorts-01.jpg
-        { img: null }, // assets/shorts-02.jpg
-        { img: null }, // assets/shorts-03.jpg
-        { img: null }, // assets/shorts-04.jpg
-        { img: null }, // assets/shorts-05.jpg
-        { img: null }, // assets/shorts-06.jpg
-        { img: null }, // assets/shorts-07.jpg
+        { img: 'assets/shorts-01.jpg'
+        { img: 'assets/shorts-02 .jpg'
+        { img: 'assets/shorts-03.jpg'
+        { img: 'assets/shorts-04.jpg'
+        { img: 'assets/shorts-05.jpg'
+        { img: 'assets/shorts-06.jpg'
+        { img: 'assets/shorts-07.jpg'
         { img: null }, // assets/shorts-08.jpg
         { img: null }, // assets/shorts-09.jpg
         { img: null } // assets/shorts-10.jpg
@@ -201,16 +201,16 @@
       name: 'Shoes',
       icon: 'shoes',
       items: [
-        { img: null }, // assets/shoes-01.jpg
-        { img: null }, // assets/shoes-02.jpg
-        { img: null }, // assets/shoes-03.jpg
-        { img: null }, // assets/shoes-04.jpg
-        { img: null }, // assets/shoes-05.jpg
-        { img: null }, // assets/shoes-06.jpg
-        { img: null }, // assets/shoes-07.jpg
-        { img: null }, // assets/shoes-08.jpg
-        { img: null }, // assets/shoes-09.jpg
-        { img: null } // assets/shoes-10.jpg
+        { img: 'assets/shoes-01.jpg'
+        { img: 'assets/shoes-02.jpg'
+        { img:  'assets/shoes-03.jpg'
+        { img: 'assets/shoes-04.jpg'
+        { img: 'assets/shoes-05.jpg'
+        { img: 'assets/shoes-06.jpg
+        { img: 'assets/shoes-07.jpg'
+        { img: 'assets/shoes-08.jpg'
+        { img: 'assets/shoes-09.jpg'
+        { img: 'assets/shoes-10.jpg'
       ]
     },
     {
