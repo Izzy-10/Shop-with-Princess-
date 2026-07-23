@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Shop with Princess</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="has-bottom-nav">
+
+<header>
+  <div class="top-row">
+    <a href="index.html" class="wordmark" style="text-decoration:none; color:inherit;">SHOP WITH <span>PRINCESS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="gallery-section" id="shop" style="padding-top:4vh;">
+  <div class="section-head">
+    <h2>Shop</h2>
+    <span id="count-label">130 pieces</span>
+  </div>
+
+  <div class="cat-tabs" id="cat-tabs"></div>
+
+  <div class="category-row" id="shop-grid"></div>
+</section>
+
+<div id="bottom-nav-mount"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/cart.js"></script>
+<script>
+  // Insert bottom nav
+  document.getElementById('bottom-nav-mount').outerHTML = `
+    <nav class="bottom-nav">
+      <a href="index.html" class="bn-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="shop.html" class="bn-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8l1-4h10l1 4"/><rect x="4" y="8" width="16" height="12" rx="1"/></svg>
+        <span>Shop</span>
+      </a>
+      <a href="index.html#contact" class="bn-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 01-8.9 8.4A8.5 8.5 0 014 12.1 8.4 8.4 0 0112.4 4a8.4 8.4 0 018.6 7.5z"/></svg>
+        <span>Contact</span>
+      </a>
+      <a href="cart.html" class="bn-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8l1-4h10l1 4"/><rect x="4" y="8" width="16" height="12" rx="1"/></svg>
+        <span>Bag</span>
+        <span id="bag-badge" class="bag-badge"></span>
+      </a>
+    </nav>
+  `;
+  updateBagBadge();
+
+  // Icons for placeholder visuals (same set as before)
+
+  function productVisual(p){
+    if(p.img) return `<img src="${p.img}" alt="${p.name}" loading="lazy">`;
+    return ICONS[p.icon] || '';
+  }
+
+  const params = new URLSearchParams(location.search);
+  const activeCategory = params.get('category') || 'All';
+
+  // Category tabs
+  const tabsEl = document.getElementById('cat-tabs');
+  const categories = ['All', ...getCategories()];
+  categories.forEach(cat => {
+    const a = document.createElement('a');
+    a.href = cat === 'All' ? 'shop.html' : `shop.html?category=${encodeURIComponent(cat)}`;
+    a.className = 'cat-tab' + (cat === activeCategory ? ' active' : '');
+    a.textContent = cat;
+    tabsEl.appendChild(a);
+  });
+
+  // Product grid
+  const grid = document.getElementById('shop-grid');
+  const list = activeCategory === 'All' ? PRODUCTS : getProductsByCategory(activeCategory);
+
+  document.getElementById('count-label').textContent = `${list.length} pieces`;
+
+  list.forEach(p => {
+    const card = document.createElement('a');
+    card.className = 'product-card';
+    card.href = `product.html?id=${p.id}`;
+    card.innerHTML = `
+      <div class="piece-frame">${productVisual(p)}</div>
+      <div class="product-card-info">
+        <div class="cat">${p.category}</div>
+        <h3>${p.name}</h3>
+        <div class="price">R${p.price}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+</script>
+
+</body>
+</html>

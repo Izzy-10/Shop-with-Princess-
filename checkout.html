@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Shop with Princess</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="has-bottom-nav">
+
+<header>
+  <div class="top-row">
+    <a href="index.html" class="wordmark" style="text-decoration:none; color:inherit;">SHOP WITH <span>PRINCESS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="checkout-page">
+  <div class="section-head">
+    <h2>Checkout</h2>
+  </div>
+  <div id="checkout-root"></div>
+</section>
+
+<div id="bottom-nav-mount"></div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script>
+  document.getElementById('bottom-nav-mount').outerHTML = `
+    <nav class="bottom-nav">
+      <a href="index.html" class="bn-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="shop.html" class="bn-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8l1-4h10l1 4"/><rect x="4" y="8" width="16" height="12" rx="1"/></svg>
+        <span>Shop</span>
+      </a>
+      <a href="index.html#contact" class="bn-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 01-8.9 8.4A8.5 8.5 0 014 12.1 8.4 8.4 0 0112.4 4a8.4 8.4 0 018.6 7.5z"/></svg>
+        <span>Contact</span>
+      </a>
+      <a href="cart.html" class="bn-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8l1-4h10l1 4"/><rect x="4" y="8" width="16" height="12" rx="1"/></svg>
+        <span>Bag</span>
+        <span id="bag-badge" class="bag-badge"></span>
+      </a>
+    </nav>
+  `;
+  updateBagBadge();
+
+  const PRINCESS_PHONE = '27729103254';
+
+  const cart = getCart();
+  const root = document.getElementById('checkout-root');
+
+  if(cart.length === 0){
+    root.innerHTML = `
+      <div class="cart-empty">
+        <p>Your bag is empty — add something before checking out.</p>
+        <br>
+        <a class="hero-cta" href="shop.html">Back to Shop →</a>
+      </div>
+    `;
+  }else{
+    const total = cartTotal();
+
+    root.innerHTML = `
+      <form id="checkout-form" class="checkout-form">
+        <div class="checkout-section">
+          <h3>Your Details</h3>
+          <label for="co-name">Full Name</label>
+          <input type="text" id="co-name" required placeholder="Your full name">
+          <label for="co-phone">Phone</label>
+          <input type="tel" id="co-phone" required placeholder="072 000 0000">
+          <label for="co-address">Delivery Address</label>
+          <input type="text" id="co-address" required placeholder="Street, suburb, city">
+        </div>
+
+        <div class="checkout-section">
+          <h3>Preferred Payment Method</h3>
+          <div class="payment-options">
+            <label class="payment-option selected" data-method="EFT">
+              <input type="radio" name="payment-method" value="EFT" checked style="display:none;">
+              <span>🏦 EFT / Bank Transfer</span>
+            </label>
+            <label class="payment-option" data-method="Cash on Delivery">
+              <input type="radio" name="payment-method" value="Cash on Delivery" style="display:none;">
+              <span>💵 Cash on Delivery</span>
+            </label>
+            <label class="payment-option" data-method="Other">
+              <input type="radio" name="payment-method" value="Other" style="display:none;">
+              <span>💬 Other — arrange with Princess</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          <div class="cart-summary-row total">
+            <span>Total</span>
+            <span>R${total}</span>
+          </div>
+        </div>
+
+        <button type="submit" class="place-order-btn">Place Order — R${total}</button>
+        <p class="checkout-note">
+          Placing your order sends your details and order summary straight to Princess on WhatsApp.
+          She'll confirm payment and delivery with you directly from there.
+        </p>
+      </form>
+    `;
+
+    document.querySelectorAll('.payment-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        opt.querySelector('input').checked = true;
+      });
+    });
+
+    document.getElementById('checkout-form').addEventListener('submit', e => {
+      e.preventDefault();
+
+      const name = document.getElementById('co-name').value.trim();
+      const phone = document.getElementById('co-phone').value.trim();
+      const address = document.getElementById('co-address').value.trim();
+      const method = document.querySelector('input[name="payment-method"]:checked').value;
+
+      const lines = cart.map(line => {
+        const product = getProduct(line.id);
+        return product ? `${product.name} (${line.color}, Size ${line.size}) x${line.qty} — R${product.price * line.qty}` : '';
+      }).filter(Boolean).join('\n');
+
+      sessionStorage.setItem('swp_order', JSON.stringify({ name, phone, address, method, total, cart }));
+
+      let text = `Hi Princess, it's ${name}. I'd like to place an order:\n\n${lines}\n\nTotal: R${total}\nPayment method: ${method}\nDelivery address: ${address}\nPhone: ${phone}`;
+
+      window.open(`https://wa.me/${PRINCESS_PHONE}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+      window.location.href = 'thankyou.html';
+    });
+  }
+</script>
+
+</body>
+</html>
