@@ -125,12 +125,12 @@
         { img: 'assets/tracksuit-02.jpg' },
         { img: 'assets/tracksuit-03.jpg' },
         { img: 'assets/tracksuit-04.jpg' },
-        { img: null }, // assets/tracksuit-05.jpg
-        { img: null }, // assets/tracksuit-06.jpg
-        { img: null }, // assets/tracksuit-07.jpg
-        { img: null }, // assets/tracksuit-08.jpg
-        { img: null }, // assets/tracksuit-09.jpg
-        { img: null } // assets/tracksuit-10.jpg
+        { img: 'assets/tracksuit-05.jpg' },
+        { img: 'assets/tracksuit-06.jpg' },
+        { img: 'assets/tracksuit-07.jpg' },
+        { img: 'assets/tracksuit-08.jpg' },
+        { img: 'assets/tracksuit-09.jpg' },
+        { img: 'assets/tracksuit-10.jpg' },
       ]
     },
     {
