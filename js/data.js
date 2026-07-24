@@ -60,7 +60,7 @@ const PRODUCTS = [
     price: 450,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Black', 'White', 'Red', 'Blue'],
-    img: null
+    img: 'assets/dresses-06.jpg'
   },
   {
     id: 'dresses-07',
@@ -70,7 +70,7 @@ const PRODUCTS = [
     price: 450,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Black', 'White', 'Red', 'Blue'],
-    img: null
+    img: 'assets/dresses-07.jpg'
   },
   {
     id: 'dresses-08',
@@ -80,7 +80,7 @@ const PRODUCTS = [
     price: 450,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Black', 'White', 'Red', 'Blue'],
-    img: null
+    img: 'assets/dresses-08.jpg'
   },
   {
     id: 'dresses-09',
@@ -90,7 +90,7 @@ const PRODUCTS = [
     price: 450,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Black', 'White', 'Red', 'Blue'],
-    img: null
+    img: 'assets/dresses-09.jpg'
   },
   {
     id: 'dresses-10',
@@ -100,7 +100,7 @@ const PRODUCTS = [
     price: 450,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: ['Black', 'White', 'Red', 'Blue'],
-    img: null
+    img: 'assets/dresses-10.jpg'
   },
   {
     id: 'tops-blouses-01',
